@@ -162,7 +162,6 @@ class HTTPServer():
 				
 			finally :
 				conn.close()
-				s.close()
 	
 	def do_get(self, header, body):
 		'''called when there is a get request. req is the dict of content header
