@@ -8,10 +8,10 @@ No fancy libraries, just plain old python code. So you can understand stuff with
 
 ##Steps taken by us
   1. Simple HTTP server
-  2. Dynamic HTTP server - fork and exec
-  3. Event based HTTP server 
-  4. Preforked server model
-  5. Worker model
+  2. Dynamic HTTP server - fork and exec (CGI)
+  3. Event based HTTP server (epoll)
+  4. Preforked server model (one active connection per worker)
+  5. Worker model (workers have threads, one active connection per worker)
   6. Worker model with WSGI support for dynamisim 
   
 All the code will be versioned in various folders. ```eg. /server/v1-simple-http/``` so it is easy for the reader to see what modifications have been made, and why a particular version is better than the previous one. 
