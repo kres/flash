@@ -90,7 +90,7 @@ class http_handler():
 		if self.request.error_code:
 			return False
 		
-		call_back = self.actions.get(self.request.command, self.do_error)
+		call_back = self.actions.get(self.request.command.upper(), self.do_error)
 		status, response_text = call_back(request)
 		
 		return self.response.build(status, response_text, self.request)
