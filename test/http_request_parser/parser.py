@@ -27,6 +27,7 @@ Content-Length: 0\r\n\r\n'''
 	print len(request.headers)     # 3
 	print request.headers.keys()   # ['accept-charset', 'host', 'accept']
 	print request.headers['host']  # "cm.bell-labs.com"
+	print request.rfile
 	print "request headers : ", request.headers.getheaders()
 	# Parsing can result in an error code and message
 	
