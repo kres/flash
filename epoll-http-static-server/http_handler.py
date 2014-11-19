@@ -1,11 +1,12 @@
 from BaseHTTPServer import BaseHTTPRequestHandler
 from StringIO import StringIO
+import os 
 
 class http_request_parser(BaseHTTPRequestHandler):
 	def __init__(self):
 		pass 
 		
-	def parse( request_text):
+	def parse( self, request_text):
 		self.rfile = StringIO(request_text)
 		self.raw_requestline = self.rfile.readline()
 		self.error_code = self.error_message = None
@@ -33,21 +34,15 @@ class http_response_builder():
             		
             	self.response_code = { }
 		self.response_code[200] =\
-		"""HTTP/1.1 200 OK
-		Server: flash-server
-		"""
+		"""HTTP/1.1 200 OK\r\nServer: flash-server\r\n"""
 		
 		self.response_code[404] =\
-		"""HTTP/1.1 404 Not Found
-		Server: flash-server
-		Content-type: text/plain
-
-		"""
+		"""HTTP/1.1 404 Not Found\r\nServer: flash-server\r\nContent-type: text/plain\r\n"""
 		
-	def set_header(key, value):
+	def set_header(self, key, value):
 		self.handler[key] = value
 		
-	def build(resp_code, response_text='', request_context=None):
+	def build(self, resp_code, response_text='', request_context=None):
 		'''builds the response, given code,  data'''
 		
 		#clear data so that it does not persist for new request
@@ -64,7 +59,7 @@ class http_response_builder():
 				
 			for k in headers:
 				response += k+": "+headers[k] + "\r\n"
-			response += '\r\n'+data
+			response += '\r\n'+response_text
 			
 		else:
 			response = self.response_code[404]
@@ -91,7 +86,7 @@ class http_handler():
 			return False
 		
 		call_back = self.actions.get(self.request.command.upper(), self.do_error)
-		status, response_text = call_back(request)
+		status, response_text = call_back(self.request)
 		
 		return self.response.build(status, response_text, self.request)
 		
@@ -116,20 +111,25 @@ class http_handler():
 		return ""
 		
 	def do_get(self, request):
-		pass
+		#pass
 		#call back; return (status, data)
 		#can modify headers via self.request.headers['xyz']
 					#or via request.headers['xyz']
-					# or via get_request_header
+					# or via self.get_request_header
 			#response headers set by self.response.headers['abc']= def
-					#or via set_response_header(k,v)
+					#or via self.set_response_header(k,v)
 					
 		#RETURN status-code, content
+		return 200, "<h1>OK</h1>"
 		
 	def do_post(self, request):
-		pass
+		return 200, "<h1>OK</h1>"
+		#pass
 		#call back
+		
 		
 	def do_error(self, request):
 		pass
 		#call back
+		
+
