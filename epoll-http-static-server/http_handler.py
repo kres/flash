@@ -103,7 +103,7 @@ class http_handler():
 		return self.request.request_version
 		
 	def get_post_content(self):
-		if self.request.method == 'POST':
+		if self.request.command == 'POST':
 			content_len = int(self.request.headers.getheader('content-length', 0))
 			post_body = self.rfile.read(content_len) #rfile is a stringIO stream
 			return post_body
