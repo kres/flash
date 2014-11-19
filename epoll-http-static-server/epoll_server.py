@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 import socket, sys, select
+from http_handler import *
 
-def handler(req):
-	if len(req) == 1:
-		return False
-	return str.upper(req)
+#def handler(req):
+#	if len(req) == 1:
+#		return False
+#	return str.upper(req)
 
 TCP_IP = '127.0.0.1'
 TCP_PORT = 6060
@@ -83,6 +84,7 @@ try:
 					requests[fileno] += req_data
 					print 'req : ', requests[fileno]
 					#call the handler
+					handler = http_handler()
 					res = handler(requests[fileno])
 				
 					#if more data is still there res -> False; else res is response str
