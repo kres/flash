@@ -36,8 +36,6 @@ while 1:
 
 		#print client address
 		print 'Connection address:', addr
-		data = ""
-		buf = ""
 
 		#read all the data from the client
 		data = conn.recv(BUFFER_SIZE * 4)
