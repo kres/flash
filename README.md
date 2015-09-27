@@ -1,4 +1,4 @@
-flash
+Flash
 =====
 
 A python framework written from scratch with love. Unlike other python frameworks (like twisted, Django, flask), this is not intended to be used in a production environment. This rather is intended as a learning tool to understand how the server side components work (main focus being on servers and scalability). 
@@ -15,3 +15,10 @@ No fancy libraries, just plain old python code. So you can understand stuff with
   6. Worker model with WSGI support for dynamisim 
   
 All the code will be versioned in various folders. ```eg. /server/v1-simple-http/``` so it is easy for the reader to see what modifications have been made, and why a particular version is better than the previous one. 
+
+### Authors
+Deepak Karki
+Aishwarya Kaliki 
+
+### Contributors 
+Deborah Digges
